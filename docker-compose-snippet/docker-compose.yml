@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    server:
+        build:
+            context: .
+            dockerfile: server/DockerFile
+        ports:
+            - 8080:8080
+    client:
+        build: 
+            context: .
+            dockerfile: client/Dockerfile 
+        depends_on:    
+            - server
+        environment:
+            ServerHost: server
+            ServerPortNo: 8080
